@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LILI</title>
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+
+    <style>
+    .tableName{
+        width: 50% !important;
+        margin: auto;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="head col-sm-12 text-center">
+            <h1 class="title "> Controle</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-center">           
+             <div class="btn-group" role="group" aria-label="Basic example">
+               <button name="control" id="data" type="button" class="btn btn-secondary">Datas</button>
+               <button name="control" id="impressora" type="button" class="btn btn-secondary">impressora</button>
+               <button name="control" id="transmissao" type="button" class="btn btn-secondary">Transmissão</button>
+               <button name="control" id="tela"type="button" class="btn btn-secondary">Tela</button>
+             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-12" id="append"></div>
+        </div>
+    </div>
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+<script>
+$(() =>{
+    $('[name="control"]').click(function(){
+       switch ($(this).attr('id')) {
+           case 'data':
+              $('#append').load('/datas');
+               break;
+           case 'impressora':
+           $('#append').load('/impressoras');
+               break;
+           case 'transmissao':
+           $('#append').load('/transmissoes');
+               break;
+           case 'tela':
+           $('#append').load('/telas');
+               break;
+       
+           default:
+               break;
+       }
+
+    });
+});
+</script>
+</html>

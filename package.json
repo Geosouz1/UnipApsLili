@@ -1,0 +1,25 @@
+{
+  "name": "unipapslili",
+  "version": "1.0.0",
+  "description": "Aps Unip Lili",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Geosouz1/UnipApsLili.git"
+  },
+  "author": "Turna CC unip 2019 7º semestre",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Geosouz1/UnipApsLili/issues"
+  },
+  "homepage": "https://github.com/Geosouz1/UnipApsLili#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1"
+  }
+}

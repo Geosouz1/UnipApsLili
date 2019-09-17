@@ -2,19 +2,35 @@ const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
 const path = require('path');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const WebSocket = require('ws');
 
-
-const PORT = process.env.PORT || 8042;
-
-const ws = new WebSocket.Server({ port: 8080 });
 
 var now = new Date();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(morgan('dev')); // registrar cada pedido para o console
+
+//String de conexão
+const url = 'mongodb://localhost:27017/aps';
+const options = {reconnectTries: Number.MAX_VALUE, reconnectInterval: 500, poolSize: 5, useNewUrlParser: true};
+
+mongoose.connect(url, options);
+mongoose.set('useCreateIndex', true);
+
+mongoose.connection.on('error', (err)=>{
+  console.log('Erro na conexão com o banco de dados!');
+})
+
+mongoose.connection.on('disconnected', ()=>{
+  console.log('Aplicação desconectada do banco de dados')
+})
+
+
+mongoose.connection.on('connected',()=>{
+  console.log('Aplicação conectada com sucesso');
+})
 
 
 // rotas ===================================
@@ -29,7 +45,7 @@ app.set('views engine', 'ejs');
 //subir a aplicação
 
 
-http.listen(PORT);
+http.listen(8042);
 console.log('A magia acontece na porta 8042');
 
 exports = module.exports = app;

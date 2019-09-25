@@ -8,6 +8,7 @@ module.exports = function (app) {
     app.get('/', home.home);
     app.get('/streamer', home.streamer);
     app.get('/cliente', home.cliente);
+    
 
 
     // Rotas controle

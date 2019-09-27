@@ -23,6 +23,7 @@ module.exports = function (app) {
     // Rotas LILI
     app.get('/lili', lili.index);
     app.post('/lili/ouvir', lili.ouvir);
+    
     app.get('/lili/falar', lili.falar);
     app.post('/lili/atualizar', lili.atualizar);
 }

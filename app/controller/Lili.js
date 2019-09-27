@@ -14,11 +14,11 @@ exports.ouvir = ((req, res) => {
 
 })
 exports.falar = ((req, res) => {
-    res.send({ "estado": estado_lili });
+    res.send(estado_lili);
 });
 
 exports.atualizar = ((req, res) => {
-    estado_lili = req.body.estado;
+    estado_lili = req.body.updateMensagem;
     return res.send({
         'msg': 'Estado Atualizado',
         'valor': estado_lili

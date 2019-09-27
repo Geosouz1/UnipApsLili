@@ -1,3 +1,4 @@
+
 const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
@@ -5,6 +6,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const io = require('socket.io')(http);
 
 
 var now = new Date();
@@ -27,7 +29,6 @@ mongoose.connection.on('disconnected', ()=>{
   console.log('Aplicação desconectada do banco de dados')
 })
 
-
 mongoose.connection.on('connected',()=>{
   console.log('Aplicação conectada com sucesso');
 })
@@ -41,6 +42,15 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(express.static(path.join(__dirname, 'assets/image')));
 app.set('views', path.join(__dirname, 'app/views'));
 app.set('views engine', 'ejs');
+
+// Socket ====================================
+io.on('connection',(socket) => {
+console.log('um usuario se conectou');
+
+socket.on('disconnect',(socket) => {
+  console.log('alguém desconectou');
+})
+});
 
 //subir a aplicação
 

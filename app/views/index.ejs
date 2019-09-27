@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>LILI</title>
-    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
 
     <style>
         body {
@@ -21,25 +21,59 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            position: center ;
+            position: center;
+        }
+
+        .vertical-center {
+            /*alinhamento vertical*/
+            min-height: 100%;
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+        }
+
+        .horizontal-center {
+            margin: 0 auto;
+            width: 80%;
+
+        }
         }
     </style>
 </head>
 
 <body class="backgound-image">
     <div class="row">
-        <div class="col-sm-12" id="tranferencia">
+        <div class="col-sm-12">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8  vertical-center" id="tranferencia">
+                <div class="panel panel-default" ">
+                    <div class="panel-heading ">Panel heading without title</div>
+                    <div class="panel-body" style="width: 900px; height : 600px;">
+                        Panel content
+                    </div>
+                    <div class="panel-footer">
 
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-2"></div>
         </div>
+    </div>
+
     </div>
 
     <script src="/jquery/dist/jquery.min.js"></script>
     <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
     <script>
-        $(()=>{
-            
+        $(() => {
+            const socket = io();
         })
     </script>
+
 </body>
 
 </html>

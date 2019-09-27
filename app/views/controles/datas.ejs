@@ -1,1 +1,53 @@
-    <h1>Código de datas</h1>
+<div class="row">
+    <div class="col-sm-12">
+        <form>
+            <p></p>
+
+            <table class="table table-striped table-condensed" id="data">
+                <thead>
+                    <tr>
+                        <td>DATA</td>
+                        <td>DESCRIÇÂO</td>
+                    </tr>
+                </thead>
+                <tbody name='tbody'>
+                    <tr id="1">
+                        <td style="width: 10%"><input type="date" name="data" class="form-control " id="data"
+                                placeholder="Digite a Data"></td>
+                        <td><textarea name="descricao" class="form-control input-xs" id="descricao"
+                                placeholder="Descrição..."></textarea></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="pull-right">
+                <button type="button" class="btn btn-default" id="remover">remover</button>
+                <button type="button" class="btn btn-success" id="adicionar">Adicionar</button>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $(() => {
+        $('#adicionar').click(function () {
+            var countId = $('[name="tbody"] tr').length+1;
+            var context = { id: countId  };
+            var source = document.getElementById("entry-template").innerHTML;
+            var template = Handlebars.compile(source);
+            var html = template(context);
+            $('[name="tbody"]').append(html);
+        });
+
+        $('#remover').click(function () {
+            var countId = $('[name="tbody"] tr').length;
+            console.log(countId);
+            $(`[name="tbody"] tr#${countId}`).remove();
+        });
+    });
+</script>
+<script id="entry-template" type="text/x-handlebars-template">
+    <tr id="{{id}}">
+            <td style="width: 10%"><input type="date" name="data" class="form-control " id="data" placeholder="Digite a Data"></td>
+            <td><textarea name="descricao" class="form-control input-xs" id="descricao" placeholder="Descrição..."></textarea></td>
+        </tr>
+</script>

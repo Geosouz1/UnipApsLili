@@ -1,12 +1,14 @@
 
 const express = require('express');
-const app = express();
-const http = require('http').createServer(app);
+var fs = require('fs')
+var app = express()
+var http = require('http').createServer(app);
+var https = require('https');
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const io = require('socket.io')(http);
+const io = require('socket.io')(https);
 
 
 var now = new Date();
@@ -40,22 +42,25 @@ require('./config/router.js')(app);
 // Rotas nodo_modules e views ===============
 app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(express.static(path.join(__dirname, 'assets/image')));
+app.use(express.static(path.join(__dirname, 'app/views')));
 app.set('views', path.join(__dirname, 'app/views'));
 app.set('views engine', 'ejs');
 
 // Socket ====================================
-io.on('connection',(socket) => {
-console.log('um usuario se conectou');
+// io.on('connection',(socket) => {
+// console.log('um usuario se conectou');
 
-socket.on('disconnect',(socket) => {
-  console.log('alguém desconectou');
-})
-});
+// socket.on('disconnect',(socket) => {
+//   console.log('alguém desconectou');
+// })
+// });
 
 //subir a aplicação
-
-
-http.listen(8042);
+https.createServer({
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.cert')
+}, app).listen(2019);
 console.log('A magia acontece na porta 8042');
+http.listen(8042);
 
 exports = module.exports = app;

@@ -1,4 +1,5 @@
 
+
 exports.controle = (req, res) => {
     res.render("controle.ejs", {
   
@@ -20,8 +21,8 @@ exports.controle = (req, res) => {
           
       });
   }
-  exports.transmissoes = (req, res) => {
-      res.render("controles/transmissoes.ejs", {
+  exports.cameras = (req, res) => {
+      res.render("cameras/cameras.ejs", {
           
       });
   }

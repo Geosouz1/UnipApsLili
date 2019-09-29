@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/cameras/style.css">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <video autoplay></video>
+        <canvas class="d-none"></canvas>
+    </div>
+    <div class="video-options">
+        <select name="" id="" class="custom-select">
+            <option value="">Select camera</option>
+        </select>
+    </div>
+
+    <img class="screenshot-image" alt="">
+
+    <div class="controls">
+            <button class="btn btn-danger play" title="Play"><i data-feather="play-circle"></i></button>
+            <button class="btn btn-info pause d-none" title="Pause"><i data-feather="pause"></i></button>
+            <button class="btn btn-outline-success screenshot d-none" title="ScreenShot"><i data-feather="image"></i></button>
+        </div>
+
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/cameras/cameras.js"></script>
+    <script src="/node_modules/feather-icons/dist/feather.min.js"></script>
+    
+    <script>
+if('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices){
+  console.log("Let's get this party started")
+}else{
+    alert('aqui não funciona')
+}
+  feather.replace();
+    </script>
+</body>
+
+</html>

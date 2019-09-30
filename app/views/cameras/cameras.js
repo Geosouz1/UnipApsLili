@@ -17,13 +17,13 @@ const constraints = {
     video: {
         width: {
             min: 600,
-            ideal: 1920,
-            max: 2560,
+            ideal: 720,
+            max: 1024,
         },
         height: {
-            min: 400,
-            ideal: 1080,
-            max: 1440
+            min: 800,
+            ideal: 1024,
+            max: 2048
         },
         facingMode: {
             exact: 'user'
@@ -94,11 +94,11 @@ const pauseStream = () => {
 setInterval(() => {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
-    canvas.getContext('2d').drawImage(video, 200, 100);
+    canvas.getContext('2d').drawImage(video, 0, 0);
      screenshotImage.src = canvas.toDataURL('image/webp');
      socket.emit('stream',canvas.toDataURL('image/webp'));
     screenshotImage.classList.remove('d-none');
-},10);
+},0.0001);
 // const doScreenshot = () => {
 //     canvas.width = video.videoWidth;
 //     canvas.height = video.videoHeight;

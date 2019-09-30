@@ -37,30 +37,40 @@
             <div class="col-sm-12" id="append"></div>
         </div>
     </div>
+    <div class="col-sm-12 text-center">
+        <button type="button" class="btn btn-danger"> Adicionar na tela</button>
+    </div>
     <script src="/jquery/dist/jquery.min.js"></script>
     <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/handlebars/dist/handlebars.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 </body>
 <script>
-$(() =>{
+    $(() =>{
+        const socket = io();
+        var tela;
     $('[name="control"]').click(function(){
        switch ($(this).attr('id')) {
            case 'data':
               $('#append').load('/datas');
+              tela = 1;
                break;
            case 'impressora':
            $('#append').load('/impressoras');
+           tela = 2;
                break;
            case 'transmissao':
            $('#append').load('/transmissoes');
+           tela = 3
                break;
            case 'tela':
            $('#append').load('/telas');
+           tela = 4;
                break;
-       
-           default:
+                   default:
                break;
        }
+       socket.emit('alterPage', tela);
 
     });
 });

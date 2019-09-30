@@ -1,14 +1,18 @@
 
 const express = require('express');
-var fs = require('fs')
-var app = express()
-var http = require('http').createServer(app);
-var https = require('https');
+const fs = require('fs')
+const app = express()
+const http = require('http').createServer(app);
+const https = require('https');
+const server = https.createServer({
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.cert')
+}, app)
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const io = require('socket.io')(https);
+const io = require('socket.io').listen(server);
 
 
 var now = new Date();
@@ -47,20 +51,21 @@ app.set('views', path.join(__dirname, 'app/views'));
 app.set('views engine', 'ejs');
 
 // Socket ====================================
-// io.on('connection',(socket) => {
-// console.log('um usuario se conectou');
+io.on('connection',function(socket){
+  socket.on('stream',function(image){
+    socket.broadcast.emit('stream',image);
+  });
 
-// socket.on('disconnect',(socket) => {
-//   console.log('alguém desconectou');
-// })
-// });
+  socket.on('alterPage', (page) =>{
+    console.log(page);
+    socket.broadcast.emit('alterPage',page);
+  })
+});
 
 //subir a aplicação
-https.createServer({
-  key: fs.readFileSync('server.key'),
-  cert: fs.readFileSync('server.cert')
-}, app).listen(2019);
-console.log('A magia acontece na porta 8042');
+server.listen(2019);
+console.log('A magia acontece na porta 2019');
 http.listen(8042);
+console.log('A magia acontece na porta 8042');
 
 exports = module.exports = app;

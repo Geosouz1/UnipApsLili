@@ -7,12 +7,13 @@ const canvas = document.querySelector('canvas');
 const screenshotImage = document.querySelector('img');
 const buttons = [...controls.querySelectorAll('button')];
 let streamStarted = false;
+const socket = io()
 
 const [play, pause, screenshot] = buttons;
 
 
 const constraints = {
-    audio: true,
+    audio: false,
     video: {
         width: {
             min: 600,
@@ -25,7 +26,7 @@ const constraints = {
             max: 1440
         },
         facingMode: {
-            exact: 'environment'
+            exact: 'user'
         }
     }
 };
@@ -95,6 +96,7 @@ const doScreenshot = () => {
     canvas.height = video.videoHeight;
     canvas.getContext('2d').drawImage(video, 0, 0);
     screenshotImage.src = canvas.toDataURL('image/webp');
+    socket.emit('stream',canvas.toDataURL('image/webp'));
     screenshotImage.classList.remove('d-none');
 };
 

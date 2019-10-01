@@ -6,7 +6,7 @@ exports.home = (req, res) => {
 };
 
 exports.streamer = (req, res) => {
-  res.render("streamer.ejs", {
+  res.render("home/streamer.ejs", {
 
   });
 };

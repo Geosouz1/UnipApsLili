@@ -47,8 +47,9 @@
             <div class="col-sm-8  vertical-center" id="tranferencia">
                 <div class="panel panel-default">
                     <div class="panel-heading ">Panel heading without title</div>
-                    <div class="panel-body" style="width: 900px; height : 600px;"></div>
-                    Panel content
+                    <div class="panel-body"></div>
+                            <div class="col-sm-12" id="append"></div>
+                    </div>
                 </div>
                 <div class="panel-footer">
 
@@ -65,10 +66,28 @@
     <script src="/jquery/dist/jquery.min.js"></script>
     <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/cameras.js"></script>
     <script>
         $(() => {
             const socket = io();
+                socket.on('alterPage',function(page){
+       switch (page) {
+           case 1:
+              $('#append').load('/datas');
+               break;
+           case 2:
+           $('#append').load('/impressoras');
+               break;
+           case 3:
+           $('#append').load('/streamer');
+               break;
+           case 4:
+           $('#append').load('/telas');
+               break;
+           default:
+               break;
+       }
+
+    });
         })
     </script>
 

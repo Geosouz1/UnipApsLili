@@ -35,10 +35,11 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="col-sm-12" id="append"></div>
+            <iframe href="http://192.168.0.6:4747/video" frameborder="0"></iframe>
         </div>
     </div>
     <div class="col-sm-12 text-center">
-        <button type="button" class="btn btn-danger"> Adicionar na tela</button>
+        <button type="button" class="btn btn-danger" id="teste"> Adicionar na tela</button>
     </div>
     <script src="/jquery/dist/jquery.min.js"></script>
     <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -73,6 +74,10 @@
        socket.emit('alterPage', tela);
 
     });
+
+ 
 });
+
+
 </script>
 </html>

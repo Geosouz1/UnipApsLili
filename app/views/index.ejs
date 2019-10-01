@@ -72,7 +72,6 @@
         $(() => {
             const socket = io();
                 socket.on('alterPage',function(page){
-                    alert(page);
        switch (page) {
            case 1:
               $('#append').load('/datas');
@@ -81,7 +80,7 @@
            $('#append').load('/home/impressoras');
                break;
            case 3:
-           $('#append').load('/transmissoes');
+           $('#append').load('/streamer');
                break;
            case 4:
            $('#append').load('/telas');

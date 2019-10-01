@@ -22,20 +22,20 @@ app.use(morgan('dev')); // registrar cada pedido para o console
 
 //String de conexão
 const url = 'mongodb://localhost:27017/aps';
-const options = {reconnectTries: Number.MAX_VALUE, reconnectInterval: 500, poolSize: 5, useNewUrlParser: true};
+const options = { reconnectTries: Number.MAX_VALUE, reconnectInterval: 500, poolSize: 5, useNewUrlParser: true };
 
 mongoose.connect(url, options);
 mongoose.set('useCreateIndex', true);
 
-mongoose.connection.on('error', (err)=>{
+mongoose.connection.on('error', (err) => {
   console.log('Erro na conexão com o banco de dados!');
 })
 
-mongoose.connection.on('disconnected', ()=>{
+mongoose.connection.on('disconnected', () => {
   console.log('Aplicação desconectada do banco de dados')
 })
 
-mongoose.connection.on('connected',()=>{
+mongoose.connection.on('connected', () => {
   console.log('Aplicação conectada com sucesso');
 })
 
@@ -51,6 +51,19 @@ app.set('views', path.join(__dirname, 'app/views'));
 app.set('views engine', 'ejs');
 
 // Socket ====================================
+io.on('connection', (socket) => {
+  console.log('usuario conectado');
+
+  socket.on('disconnect', (socket) =>{
+    console.log('usuario desconectou')
+  })
+
+  socket.on('stream', function (image) {
+    socket.broadcast.emit('stream', image);
+  });
+})
+// io.on('connection',(socket) => {
+// console.log('um usuario se conectou');
 io.on('connection',function(socket){
   socket.on('stream',function(image){
     socket.broadcast.emit('stream',image);

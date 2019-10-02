@@ -30,8 +30,6 @@ const constraints = {
         }
     }
 };
-
-
 const getCameraSelection = async () => {
     const devices = await navigator.mediaDevices.enumerateDevices();
     const videoDevices = devices.filter(device => device.kind === 'videoinput');

@@ -1,18 +1,15 @@
-
-
 exports.home = (req, res) => {
-  res.render("index.ejs", {
-  });
+  res.render("index.ejs", {});
 };
 
 exports.streamer = (req, res) => {
-  res.render("home/streamer.ejs", {
-
-  });
+  res.render("home/streamer.ejs", {});
 };
 
-exports.cliente = (req, res) => {
-  res.render("cliente.ejs", {
+exports.impressoras = (req, res) => {
+  res.render("home/impressoras.ejs", {});
+};
 
-  });
+exports.datas = (req, res) => {
+  res.render("home/datas.ejs", {});
 };

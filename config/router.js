@@ -9,7 +9,8 @@ module.exports = function (app) {
     // Rotas apresentação
     app.get('/', home.home);
     app.get('/streamer', home.streamer);
-    app.get('/cliente', home.cliente);
+    app.get('/home/impressoras', home.impressoras);
+    app.get('/home/datas', home.datas);
     
 
 
